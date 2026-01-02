@@ -22,7 +22,7 @@ resource "aws_dynamodb_table" "this" {
     for_each = local.all_attributes
     content {
       name = attribute.value
-      type = "S"
+      type = lookup(var.attribute_types, attribute.value, "S")
     }
   }
 
@@ -58,8 +58,8 @@ resource "aws_dynamodb_table" "this" {
   dynamic "replica" {
     for_each = var.replica_regions
     content {
-      region_name            = replica.value
-      kms_key_arn            = var.kms_key_arn
+      region_name            = replica.value.region_name
+      kms_key_arn            = replica.value.kms_key_arn
       point_in_time_recovery = var.point_in_time_recovery_enabled
     }
   }

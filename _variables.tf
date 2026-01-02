@@ -93,9 +93,23 @@ variable "global_secondary_indexes" {
 }
 
 variable "replica_regions" {
-  type        = list(string)
-  description = "List of regions to create replicas in for global tables"
+  type = list(object({
+    region_name = string
+    kms_key_arn = optional(string)
+  }))
+  description = "List of replica configurations with region-specific KMS keys"
   default     = []
+}
+
+variable "attribute_types" {
+  type        = map(string)
+  description = "Map of attribute names to their types (S=String, N=Number, B=Binary). Defaults to S if not specified."
+  default     = {}
+
+  validation {
+    condition     = alltrue([for v in values(var.attribute_types) : contains(["S", "N", "B"], v)])
+    error_message = "Attribute types must be one of: S (String), N (Number), or B (Binary)"
+  }
 }
 
 variable "tags" {
