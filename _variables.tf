@@ -77,11 +77,19 @@ variable "global_secondary_indexes" {
   type = list(object({
     name            = string
     hash_key        = string
-    range_key       = string
+    range_key       = optional(string)
     projection_type = string
   }))
   description = "List of global secondary indexes"
   default     = []
+
+  validation {
+    condition = alltrue([
+      for gsi in var.global_secondary_indexes :
+      contains(["ALL", "KEYS_ONLY", "INCLUDE"], gsi.projection_type)
+    ])
+    error_message = "GSI projection_type must be ALL, KEYS_ONLY, or INCLUDE"
+  }
 }
 
 variable "replica_regions" {
