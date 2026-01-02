@@ -14,11 +14,11 @@ output "table_arn" {
 }
 
 output "stream_arn" {
-  value       = var.stream_enabled ? aws_dynamodb_table.this.stream_arn : null
+  value       = try(aws_dynamodb_table.this.stream_arn, null)
   description = "The ARN of the DynamoDB stream"
 }
 
 output "stream_label" {
-  value       = var.stream_enabled ? aws_dynamodb_table.this.stream_label : null
+  value       = try(aws_dynamodb_table.this.stream_label, null)
   description = "The label of the DynamoDB stream"
 }
