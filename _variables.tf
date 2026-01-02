@@ -21,7 +21,7 @@ variable "hash_key" {
 }
 
 variable "range_key" {
-  type        = optional(string)
+  type        = string
   description = "The attribute to use as the range (sort) key"
   default     = null
 }
@@ -75,10 +75,11 @@ variable "kms_key_arn" {
 
 variable "global_secondary_indexes" {
   type = list(object({
-    name            = string
-    hash_key        = string
-    range_key       = optional(string)
-    projection_type = string
+    name               = string
+    hash_key           = string
+    range_key          = optional(string)
+    projection_type    = string
+    non_key_attributes = optional(list(string))
   }))
   description = "List of global secondary indexes"
   default     = []

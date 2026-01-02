@@ -125,7 +125,7 @@ module "table_with_numbers" {
 |------|-------------|------|---------|:--------:|
 | table_name | Name of the DynamoDB table | `string` | n/a | yes |
 | hash_key | The attribute to use as the hash (partition) key | `string` | `"PK"` | no |
-| range_key | The attribute to use as the range (sort) key | `string` | `"SK"` | no |
+| range_key | The attribute to use as the range (sort) key. When null, no sort key is used. | `string` | `null` | no |
 | billing_mode | Billing mode for the table (PROVISIONED or PAY_PER_REQUEST) | `string` | `"PAY_PER_REQUEST"` | no |
 | stream_enabled | Enable DynamoDB Streams | `bool` | `true` | no |
 | stream_view_type | Stream view type (KEYS_ONLY, NEW_IMAGE, OLD_IMAGE, NEW_AND_OLD_IMAGES) | `string` | `"NEW_AND_OLD_IMAGES"` | no |
@@ -134,7 +134,7 @@ module "table_with_numbers" {
 | ttl_enabled | Enable TTL | `bool` | `true` | no |
 | ttl_attribute_name | The name of the TTL attribute | `string` | `"DynamoTimeToLive"` | no |
 | kms_key_arn | ARN of the KMS key for encryption at rest (optional, uses AWS managed key if null) | `string` | `null` | no |
-| global_secondary_indexes | List of global secondary indexes | `list(object({name=string, hash_key=string, range_key=optional(string), projection_type=string}))` | `[]` | no |
+| global_secondary_indexes | List of global secondary indexes | `list(object({name=string, hash_key=string, range_key=optional(string), projection_type=string, non_key_attributes=optional(list(string))}))` | `[]` | no |
 | replica_regions | List of replica configurations with region-specific KMS keys | `list(object({region_name=string, kms_key_arn=optional(string)}))` | `[]` | no |
 | attribute_types | Map of attribute names to their types (S=String, N=Number, B=Binary). Defaults to S if not specified. | `map(string)` | `{}` | no |
 | tags | Tags to apply to the DynamoDB table | `map(string)` | `{}` | no |
