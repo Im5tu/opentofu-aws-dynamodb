@@ -21,9 +21,9 @@ variable "hash_key" {
 }
 
 variable "range_key" {
-  type        = string
+  type        = optional(string)
   description = "The attribute to use as the range (sort) key"
-  default     = "SK"
+  default     = null
 }
 
 variable "stream_enabled" {
