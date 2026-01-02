@@ -52,7 +52,7 @@ variable "deletion_protection_enabled" {
 variable "point_in_time_recovery_enabled" {
   type        = bool
   description = "Enable point-in-time recovery"
-  default     = false
+  default     = true
 }
 
 variable "ttl_enabled" {
