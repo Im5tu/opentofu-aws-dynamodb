@@ -8,7 +8,7 @@ Creates a DynamoDB table with support for global secondary indexes, global table
 
 ```hcl
 module "simple_table" {
-  source = "git::https://github.com/im5tu/opentofu-aws-dynamodb.git?ref=main"
+  source = "git::https://github.com/im5tu/opentofu-aws-dynamodb.git?ref=78dd6972427197174e1ae55a4562a71d7e36f547"
 
   table_name = "my-table"
   hash_key   = "id"
@@ -24,7 +24,7 @@ module "simple_table" {
 
 ```hcl
 module "table_with_gsi" {
-  source = "git::https://github.com/im5tu/opentofu-aws-dynamodb.git?ref=main"
+  source = "git::https://github.com/im5tu/opentofu-aws-dynamodb.git?ref=78dd6972427197174e1ae55a4562a71d7e36f547"
 
   table_name = "orders"
   hash_key   = "PK"
@@ -54,7 +54,7 @@ module "table_with_gsi" {
 
 ```hcl
 module "global_table" {
-  source = "git::https://github.com/im5tu/opentofu-aws-dynamodb.git?ref=main"
+  source = "git::https://github.com/im5tu/opentofu-aws-dynamodb.git?ref=78dd6972427197174e1ae55a4562a71d7e36f547"
 
   table_name = "global-config"
   hash_key   = "PK"
@@ -85,7 +85,7 @@ module "global_table" {
 
 ```hcl
 module "table_with_numbers" {
-  source = "git::https://github.com/im5tu/opentofu-aws-dynamodb.git?ref=main"
+  source = "git::https://github.com/im5tu/opentofu-aws-dynamodb.git?ref=78dd6972427197174e1ae55a4562a71d7e36f547"
 
   table_name = "metrics"
   hash_key   = "device_id"
